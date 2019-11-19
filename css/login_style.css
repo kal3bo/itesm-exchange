@@ -9,25 +9,25 @@
   background: #2D2F36;
 }
 body {
-  background: white;
+  background: black;
   font-family: 'Inter UI', sans-serif;
   margin: 0;
-  padding: 20px;
+  padding: 0px;
 }
 .page {
-  background: #e2e2e5;
+  background: url(../images/background.png);
   display: flex;
   flex-direction: column;
-  height: calc(100% - 40px);
+  height: calc(100%);
   position: absolute;
   place-content: center;
-  width: calc(100% - 40px);
+  width: calc(100%);
 }
 @media (max-width: 767px) {
   .page {
     height: auto;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
   }
 }
 .container {
