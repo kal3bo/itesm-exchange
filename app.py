@@ -28,7 +28,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-app.config['SECRET_KEY'] = 'Kalen tiene cara de pitoscuro'
+app.config['SECRET_KEY'] = 'Clase'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://kaleb:Mexico_2018@localhost:3306/itesm_exchange'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
