@@ -19,7 +19,7 @@ $('document').ready(function (e) {
       dataType: 'json',
       contentType: 'application/json',
       success: function (data) {
-        window.location.href = '../views/students.html';
+        window.location.href = 'views/students.html';
       },
       error: function (data) {
         alert("Usuario y/o Contraseña Incorrectos");

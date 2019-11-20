@@ -48,14 +48,14 @@ CLOUDSQL_CONNECTION_NAME = 'itesm-exchange:us-central1:backend'
 # The CloudSQL proxy is used locally to connect to the cloudsql instance.
 # To start the proxy, use:
 #
-#   $ cloud_sql_proxy -instances=your-connection-name=tcp:3307
+#   $ cloud_sql_proxy -instances=your-connection-name=tcp:3306
 #
-# Port 3307 is the standard MySQL port. If you need to use a different port,
-# change the 3307 to a different port number.
+# Port 3306 is the standard MySQL port. If you need to use a different port,
+# change the 3306 to a different port number.
 
 # Alternatively, you could use a local MySQL instance for testing.
 LOCAL_SQLALCHEMY_DATABASE_URI = (
-    'mysql+pymysql://{user}:{password}@127.0.0.1:3307/{database}').format(
+    'mysql+pymysql://{user}:{password}@127.0.0.1:3306/{database}').format(
         user=CLOUDSQL_USER, password=CLOUDSQL_PASSWORD,
         database=CLOUDSQL_DATABASE)
 
