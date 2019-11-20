@@ -24,9 +24,36 @@ import http.client
 import base64
 from flask_cors import CORS
 
-# initialization
+import logging
+from flask import Flask, render_template, request, Response
+import sqlalchemy
+# Remember - storing secrets in plaintext is potentially unsafe. Consider using
+# something like https://cloud.google.com/kms/ to help keep secrets secret.
+db_user = os.environ.get("kaleb")
+db_pass = os.environ.get("kaleb")
+db_name = os.environ.get("itesm_exchange")
+cloud_sql_connection_name = os.environ.get("itesm-exchange:us-central1:backend")
+
 app = Flask(__name__)
 CORS(app)
+
+logger = logging.getLogger()
+
+# Initialization:
+# [START cloud_sql_mysql_sqlalchemy_create]
+# The SQLAlchemy engine will help manage interactions, including automatically
+# managing a pool of connections to your database
+db = sqlalchemy.create_engine(
+    sqlalchemy.engine.url.URL(
+        drivername='mysql+pymysql',
+        username = db_user,
+        password = db_pass,
+        database = db_name,
+        query = {
+            'unix_socket': '/cloudsql/{}'.format(cloud_sql_connection_name)
+        }
+    ),
+)
 
 app.config['SECRET_KEY'] = 'Clase'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://kaleb:Mexico_2018@localhost:3306/itesm_exchange'
@@ -54,7 +81,7 @@ class User(db.Model):
     last_name = db.Column(db.String(50))
     created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     id_user_type = db.Column(db.Integer)
-    id_campus = db.Column(db.Integer)
+    id_campus = db.Column(db.Integer, default="1")
 
     def hash_password(self, password):
         self.password = pwd_context.encrypt(password)
@@ -102,7 +129,7 @@ def new_user():
     created = request.json.get('created')
     id_user_type = request.json.get('id_user_type')
     id_campus = request.json.get('id_campus')
-    if username is None or userid is None or password is None or name is None or last_name is None or created is None or id_user_type is None or id_campus is None:
+    if username is None or password is None or name is None or last_name is None or created is None or id_user_type is None:
         abort(400)    # missing arguments
     if User.query.filter_by(username=username).first() is not None:
         #abort(401)    # existing user
@@ -130,7 +157,6 @@ def get_user(username):
 def get_auth_token():
     token = g.user.generate_auth_token(600)
     return jsonify({'token': token.decode('ascii'), 'duration': 600})
-
 
 ############################################################################################################################################################################################################
 ## Cuentas
@@ -271,7 +297,7 @@ def get_gstu():
 #CURSOS:
 
 class Course(db.Model):
-    __tablename__ = 'course'
+    __tablename__ = 'courses'
     id_course = db.Column(db.Integer, primary_key=True)
     course_description = db.Column(db.String(100))
     first_day = db.Column(db.DateTime)
