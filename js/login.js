@@ -6,10 +6,6 @@ $('document').ready(function (e) {
     })
   });
   
-  var globalUserName={
-    userName: ' '
-  };
-
   function loginPag(user, pass) {
     var datos = user + ":" + pass ;
     var encodedString = btoa(datos);
@@ -27,11 +23,9 @@ $('document').ready(function (e) {
         globalUserName.userName = data.username;
         if (type == 1){
           window.location.href = 'students.html';
-          console.log(type);
         }
         else{
           window.location.href = 'teachers.html';
-          console.log(type);
         }
       },
       error: function (data) {
