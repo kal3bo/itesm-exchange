@@ -6,11 +6,15 @@ $('document').ready(function (e) {
     })
   });
   
+  var globalUserName={
+    userName: ' '
+  };
+
   function loginPag(user, pass) {
     var datos = user + ":" + pass ;
     var encodedString = btoa(datos);
     $.ajax({
-      url: 'http://localhost:5000/api/token',
+      url: 'http://35.225.18.238:5000/api/token',
       async: false,
       method: 'GET',
       headers: {
@@ -19,7 +23,16 @@ $('document').ready(function (e) {
       dataType: 'json',
       contentType: 'application/json',
       success: function (data) {
-        window.location.href = 'views/students.html';
+        var type = parseInt(data.id_user_type);
+        globalUserName.userName = data.username;
+        if (type == 1){
+          window.location.href = 'students.html';
+          console.log(type);
+        }
+        else{
+          window.location.href = 'teachers.html';
+          console.log(type);
+        }
       },
       error: function (data) {
         alert("Usuario y/o Contraseña Incorrectos");

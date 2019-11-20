@@ -2,12 +2,6 @@ runtime: python27
 api_version: 1
 threadsafe: true
 
-env_variables:
-  CLOUD_SQL_CONNECTION_NAME: itesm-exchange:us-central1:backend
-  DB_USER: kaleb
-  DB_PASS: kaleb
-  DB_NAME: itesm_exchange
-
 handlers:
 - url: /css
   static_dir: css
@@ -23,7 +17,15 @@ handlers:
 
 - url: /
   static_files: views/login.html
-  upload: viws/login.html
+  upload: views/login.html
+
+- url: /
+  static_files: views/students.html
+  upload: views/students.html
+
+- url: /
+  static_files: views/teachers.html
+  upload: views/teachers.html
 
 - url: /(.*)
   static_files: views/\1
