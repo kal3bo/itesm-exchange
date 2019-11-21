@@ -268,7 +268,7 @@ def new_grade():
             #,{'Location': url_for('get_account', idCuentaMovimiento=movimiento.idCuentaMovimiento, _external=True)}
             )
 
-#BUSQUEDA DE CAMPUS
+#BUSQUEDA DE CALIS
 @app.route('/api/grade/professor', methods=['POST'])
 @auth.login_required
 def get_gprof():
