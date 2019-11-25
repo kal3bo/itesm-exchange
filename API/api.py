@@ -23,16 +23,15 @@ import requests
 import http.client
 import base64
 from flask_cors import CORS
-
 import logging
 from flask import Flask, render_template, request, Response
 import sqlalchemy
 # Remember - storing secrets in plaintext is potentially unsafe. Consider using
 # something like https://cloud.google.com/kms/ to help keep secrets secret.
-db_user = os.environ.get("kaleb")
-db_pass = os.environ.get("kaleb")
-db_name = os.environ.get("itesm_exchange")
-cloud_sql_connection_name = os.environ.get("itesm-exchange:us-central1:backend")
+#db_user = os.environ.get("kaleb")
+#db_pass = os.environ.get("kaleb")
+#db_name = os.environ.get("itesm_exchange")
+#cloud_sql_connection_name = os.environ.get("itesm-exchange:us-central1:backend")
 
 app = Flask(__name__)
 CORS(app)
@@ -43,23 +42,22 @@ logger = logging.getLogger()
 # [START cloud_sql_mysql_sqlalchemy_create]
 # The SQLAlchemy engine will help manage interactions, including automatically
 # managing a pool of connections to your database
-db = sqlalchemy.create_engine(
-    sqlalchemy.engine.url.URL(
-        drivername='mysql+pymysql',
-        username = db_user,
-        password = db_pass,
-        database = db_name,
-        query = {
-            'unix_socket': '/cloudsql/{}'.format(cloud_sql_connection_name)
-        }
-    ),
-)
+#db = sqlalchemy.create_engine(
+#    sqlalchemy.engine.url.URL(
+#        drivername='mysql+pymysql',
+#        username = db_user,
+#        password = db_pass,
+#        database = db_name,
+#        query = {
+#            'unix_socket': '/cloudsql/{}'.format(cloud_sql_connection_name)
+#        }
+#    ),
+#)
 
-app.config['SECRET_KEY'] = 'Clase'
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://kaleb:Mexico_2018@localhost:3306/itesm_exchange'
+app.config['SECRET_KEY'] = 'Kalen tiene cara de pitoscuro'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://kaleb:kaleb@35.239.222.150:3306/itesm_exchange'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 
 # extensions
 db = SQLAlchemy(app)
@@ -156,7 +154,18 @@ def get_user(username):
 @auth.login_required
 def get_auth_token():
     token = g.user.generate_auth_token(600)
-    return jsonify({'token': token.decode('ascii'), 'duration': 600})
+    return jsonify({'token': token.decode('ascii'), 'duration': 600, 'id_user_type': g.user.id_user_type})
+
+# Get name by username:
+@app.route('/api/users/name', methods=['POST'])
+@auth.login_required
+def get_name():
+    username = request.json.get('username')
+    if username is None:
+        respuesta = 'No user found'
+        return (jsonify({'response': respuesta}), 400)    # missing arguments
+    thisName = User.query.filter_by(username=username).first()
+    return jsonify({'name': thisName.name + ' '+ thisName.last_name })   # existing account number
 
 ############################################################################################################################################################################################################
 ## Cuentas
@@ -268,7 +277,17 @@ def new_grade():
             #,{'Location': url_for('get_account', idCuentaMovimiento=movimiento.idCuentaMovimiento, _external=True)}
             )
 
-#BUSQUEDA DE CALIS
+@app.route('/api/grade/id', methods=['POST'])
+@auth.login_required
+def get_gradebyID():
+    id = request.json.get('id')
+    if id is None:
+        respuesta = 'No id found'
+        return (jsonify({'response': respuesta}), 400)    # missing arguments
+    grade = Grades.query.filter_by(id=id).first()
+    return jsonify({'id': grade.id, 'grade': grade.grade, 'username': grade.student})   # existing account number
+
+#BUSQUEDA DE CALIFICACION
 @app.route('/api/grade/professor', methods=['POST'])
 @auth.login_required
 def get_gprof():
@@ -281,7 +300,7 @@ def get_gprof():
     return jsonify(result)   # existing account number
 
 
-#BUSQUEDA DE CALIS
+#BUSQUEDA DE CALIFICACION
 @app.route('/api/grade/student', methods=['POST'])
 @auth.login_required
 def get_gstu():
@@ -292,6 +311,21 @@ def get_gstu():
     grades = Grades.query.filter_by(student=student).all()
     result = grades_schema.dump(grades)
     return jsonify(result)   # existing account number
+
+# Update Grade:
+@app.route('/api/grade/update', methods=['PUT'])
+@auth.login_required
+def update_grade():
+    id = request.json.get('id')
+    new_grade = request.json.get('new_grade')
+    if id is None:
+        respuesta = 'No grade found'
+        return (jsonify({'response': respuesta}), 400)    # missing arguments
+    last_grade = Grades.query.filter_by(id=id).first()
+    last_grade.grade = new_grade
+    db.session.commit()
+    respuesta = 'Actualizado'
+    return jsonify({'id': last_grade.id, 'message': respuesta})   # existing account number
 
 ############################################################################################################################################################################################################
 #CURSOS:
@@ -396,7 +430,7 @@ if __name__ == '__main__':
     #if row_count==0:
     #    db.create_all()
     #app.run(debug=True)
-    db.create_all()
+    #db.create_all()
     app.run(host='0.0.0.0')
     app.run(debug=True)
     app.run(ssl_context='adhoc')

@@ -6,6 +6,27 @@ $('document').ready(function (e) {
   })
 });
 
+function insertName(){
+  $.ajax({
+    url: 'http://35.225.18.238:5000/api/users/name',
+    async: false,
+    method: 'POST',
+    headers: {
+      "Authorization": 'Basic ' + localStorage.getItem('credentials').toString()
+    },
+    data: JSON.stringify({"username": localStorage.getItem('username')}),
+    dataType: 'json',
+    contentType: 'application/json',
+    success: function (data) {
+      var name = data.name
+      localStorage.setItem('name', name);
+    },
+    error: function (data) {
+      alert("Problema con el nombre")
+    }
+  });
+}
+
 function loginPag(user, pass) {
   var datos = user + ":" + pass ;
   var encodedString = btoa(datos);
@@ -22,6 +43,7 @@ function loginPag(user, pass) {
     success: function (data) {
       var type = parseInt(data.id_user_type);
       localStorage.setItem('username', user);
+      insertName();
       if (type == 1){
         window.location.href = 'students.html';
       }
