@@ -1,65 +1,56 @@
-# ITESM-Exchange
----
-#### Materia: Desarrollo de aplicaciones en la nube (TC3059)
+# International-Students-Web-Service
 
-##### Campus: Santa Fe
+## 1. Summary
 
-##### Integrantes:
-1. Andrés Campos Tams A01024385
-2. Diego Kaleb Valenzuela Carrillo A01018992
+### 1.1 Technical Requirements
 
----
-## 1. Aspectos generales
+The minimum technical requirements of the project are mentioned below, please keep them in mind so that it meets all of them.
 
-### 1.1 Requerimientos técnicos
+* The team is free to choose the development technologies to be used in the project, however, they must bear in mind that the final solution must be executed on one of the following cloud platforms:  [Google Cloud Platform](https://cloud.google.com/?hl=es), [Amazon Web Services](https://aws.amazon.com/) or [Microsoft Azure](https://azure.microsoft.com/es-mx/).
+* The project must use:
+* The solution must use a microservices architecture. If you are not familiar with this topic, we recommend reading [*Microservices*](https://martinfowler.com/articles/microservices.html) from [Martin Fowler](https://martinfowler.com).
+* The architecture must be modular, scalable, with redundancy and high availability.
+* The architecture should be clearly separated by layers (* frontend *, * backend *, * RESTful API *, data and storage).
+* Containers [Docker] (https://www.docker.com/) and an orchestrator like  [Kubernetes](https://kubernetes.io/).
+* The API must use authentication and be deployed behind an API Manager such as [Cloud Endpoints](https://cloud.google.com/endpoints/).
+* The project must have the necessary configuration files and * scripts * to create all the necessary infrastructure, using an * Infrastructure as a Code * solution such as [Deployment Manager](https://cloud.google.com/deployment-manager/).
+* All code, * datasets * and project documentation should be housed in this GitHub repository. Please keep the proposed folder structure.
 
-A continuación se mencionan los requerimientos técnicos mínimos del proyecto, favor de tenerlos presente para que cumpla con todos.
-
-* El equipo tiene la libertad de elegir las tecnologías de desarrollo a utilizar en el proyecto, sin embargo, debe tener presente que la solución final se deberá ejecutar en una de las siguientes plataformas en la nube: [Google Cloud Platform](https://cloud.google.com/?hl=es), [Amazon Web Services](https://aws.amazon.com/) o [Microsoft Azure](https://azure.microsoft.com/es-mx/).
-* El proyecto deberá utilizar 
-* La solución debe utilizar una arquitectura de microservicios. Si no tiene conocimiento sobre este tema, le recomendamos la lectura [*Microservices*](https://martinfowler.com/articles/microservices.html) de [Martin Fowler](https://martinfowler.com).
-* La arquitectura debe ser modular, escalable, con redundancia y alta disponibilidad.
-* La arquitectura deberá estar separada claramente por capas (*frontend*, *backend*, *API RESTful*, datos y almacenamiento).
-* Deberá utilizarse contenedores [Docker](https://www.docker.com/) y un orquestador como [Kubernetes](https://kubernetes.io/).
-* La API deberá utilizar autenticación y estar desplegada detrás de un API Manager como [Cloud Endpoints](https://cloud.google.com/endpoints/).
-* El proyecto deberá contar con los archivos de configuración y *scripts* necesarios para crear toda la infraestructura necesaria, utilizando alguna solución de *Infraestructure as a Code* como [Deployment Manager](https://cloud.google.com/deployment-manager/).
-* Todo el código, *datasets* y la documentación del proyecto debe alojarse en este repositorio de GitHub. Favor de mantener la estructura de carpetas propuesta.
-
-### 1.2 Estructura del repositorio
-El proyecto debe seguir la siguiente estructura de carpetas, la cual generamos por usted:
+### 1.2 Repo Structure
+The repository needs to follow the next structure:
 ```
-- / 			        # Raíz de todo el proyecto
-    - README.md			# Archivo con los datos del proyecto (este archivo)
-    - frontend			# Carpeta con la solución del frontend (Web app)
-    - backend			  # Carpeta con la solución del backend (CMS)
-    - api			      # Carpeta con la solución de la API
-    - datasets		  # Carpeta con los datasets y recursos utilizados (csv, json, audio, videos, entre otros)
-    - dbs			      # Carpeta con los modelos, catálogos y scripts necesarios para generar las bases de datos
-    - models			  # Carpeta donde se almacenarán los modelos de Machine Learning ya entrenados
-    - docs			    # Carpeta con la documentación del proyecto
+- / 			        # Root of the entire project
+    - README.md			# File with the project data (this file)
+    - frontend			# Frontend Solution (Web app)
+    - backend			  # Backend Solution (CMS)
+    - api			      # API Solution
+    - datasets		  # Datasets and used resources (csv, json, audio, videos, among others)
+    - dbs			      # Models and needed scripts to generate the database
+    - models			  # Machine Learning models if needed
+    - docs			    # Documentation.
 ```
 
-### 1.3 Documentación  del proyecto
+### 1.3 Project Documentation
 
-Como parte de la entrega final del proyecto, se debe incluir la siguiente información:
+As part of the final delivery of the project, the following information must be included:
 
-* Descripción del problema a resolver.
-* Diagrama con la arquitectura de la solución.
-* Descripción de cada uno de los componentes de la arquitectura.
-* Justificación de los componentes seleccionados.
-* Explicación del flujo de información en la arquitectura.
-* Descripción de las fuentes de información utilizadas (archivos CSV, JSON, TXT, bases de datos, entre otras).
-* Guía de configuración, instalación y despliegue de la solución en la plataforma en la nube seleccionada.
-* Documentación de la API. Puede ver un ejemplo en [Swagger](https://swagger.io/). 
-* El código debe estar documentado siguiendo los estándares definidos para el lenguaje de programación seleccionado.
+* Description of the problem to be solved.
+* Diagram with the architecture of the solution.
+* Description of each of the components of the architecture.
+* Justification of the selected components.
+* Explanation of the information flow in the architecture.
+* Description of the information sources used (CSV, JSON, TXT files, databases, among others).
+* Guide to the configuration, installation and deployment of the solution on the selected cloud platform.
+* API documentation. You can see an example in [Swagger](https://swagger.io/).
+* The code must be documented following the standards defined for the selected programming language.
 
-## 2. Descripción del proyecto
+## 2. Project Description
 
-Hoy en día, el Departamento de Programas Internacionales del Tecnológico de Monterrey no tiene su propio sistema de calificaciones, cuando un estudiante está en una universidad en el extranjero, esa universidad debe registrar las calificaciones manualmente o en una plataforma distinta de cualquier sistema ITESM. Posteriormente, al final de cada periodo, Programas Internacionales recibe una lista para cada una de las universidades afiliadas, incluyendo las calificaciones de los estudiantes que asistieron durante ese período.
+Today, the Tecnológico de Monterrey Department of International Programs does not have its own grading system, when a student is at a university abroad, that university must register the grades manually or on a platform other than any ITESM system. Subsequently, at the end of each period, International Programs receives a list for each of the affiliated universities, including the grades of the students who attended during that period.
 
-**El proceso actual lleva mucho tiempo y no es muy transparente**, ya que un estudiante puede verificar sus calificaciones hasta que  Programas Internacionales las apruebe, las envíe a los directores de cada carrera y, hasta ese momento, los carguen en la plataforma del Tecnológico de Monterrey.
+** The current process takes a long time and is not very transparent **, since a student can verify their grades until they are approved by International Programs, send them to the directors of each career and, until then, upload them to the platform from the Tecnológico de Monterrey.
 
-Los estudiantes que son candidatos para la graduación tienden a tener problemas con las calificaciones de aquellas materias que tomaron en el extranjero un período antes de su fecha de graduación, por lo que los Programas Internacionales y los departamentos de carreras siempre tienen que "apresurar" el proceso para terminar a tiempo.
+Students who are candidates for graduation tend to have trouble with the grades of those subjects they took abroad a period before their graduation date, so International Programs and career departments always have to "rush" the process to finish on time.
 
 ## 3. Solución
 
