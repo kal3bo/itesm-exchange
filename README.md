@@ -48,17 +48,17 @@ As part of the final delivery of the project, the following information must be 
 
 Today, the Tecnológico de Monterrey Department of International Programs does not have its own grading system, when a student is at a university abroad, that university must register the grades manually or on a platform other than any ITESM system. Subsequently, at the end of each period, International Programs receives a list for each of the affiliated universities, including the grades of the students who attended during that period.
 
-** The current process takes a long time and is not very transparent **, since a student can verify their grades until they are approved by International Programs, send them to the directors of each career and, until then, upload them to the platform from the Tecnológico de Monterrey.
+**The current process takes a long time and is not very transparent**, since a student can verify their grades until they are approved by International Programs, send them to the directors of each career and, until then, upload them to the platform from the Tecnológico de Monterrey.
 
 Students who are candidates for graduation tend to have trouble with the grades of those subjects they took abroad a period before their graduation date, so International Programs and career departments always have to "rush" the process to finish on time.
 
-## 3. Solución
+## 3. Solution
 
-A continuación aparecen descritos los diferentes elementos que forman parte de la solución del proyecto.
+The different elements that are part of the project solution are described below.
 
-El desarrollo de este proyecto se alojará como un servicio web en línea para estudiantes que estudian un programa universitario en el extranjero. La plataforma se desarrollará utilizando las herramientas de la Plataforma Google Console, que incluyen:  **VPC Networks, Network Services, Storage, Cloud Build, SQL Storage, Kubernetes Engine y Cloud Endpoints.**
+The development of this project will be hosted as an online web service for students studying a university program abroad. The platform will be developed using the tools of the Google Console Platform, which include: **VPC Networks, Network Services, Storage, Cloud Build, SQL Storage, Kubernetes Engine and Cloud Endpoints.**
 
-Además, se utilizarán herramientas para el desarrollo de la aplicación que son diferentes a las incluidas en Google, las cuales son:
+In addition, application development tools that are different from those included in Google will be used, which are:
 * HTML 5
 * Node.js
 * Javascript
@@ -69,67 +69,67 @@ Además, se utilizarán herramientas para el desarrollo de la aplicación que so
 * SQLAlchemy
 * Docker
 
-El proyecto pretende optimizar el proceso de calificación para los estudiantes que estudian en América del Norte y Europa. Se espera que la plataforma se use, más adelante, en todo el mundo y con todas las universidades afiliadas al Tecnológico de Monterrey.
+The project aims to optimize the qualification process for students studying in North America and Europe. It is expected that the platform will be used throughout the world and with all the affiliated universities of the Tecnológico de Monterrey.
 
-El alcance incluye: diseño, desarrollo, prueba, operación e implementación de la solución. 
-No incluye: mantenimiento, capacitación o cualquier otro servicio una vez que la solución se implementa y se prueba.
+The scope includes: design, development, testing, operation and implementation of the solution.
+Does not include: maintenance, training or any other service once the solution is implemented and tested.
 
-### 3.1.1 Modelo As-Is:
+### 3.1.1 As-Is Diagram:
 ![Alt text](docs/Process-As-Is.png?raw=true "Process-As-Is")
 
-### 3.1.2 Modelo To-Be:
+### 3.1.2 To-Be Diagram:
 ![Alt text](docs/Process-To-Be.png?raw=true "Process-To-Be")
 
-### 3.2 Arquitectura de la solución
-![Alt text](docs/Arquitectura-De-Software.png?raw=true "Arquitectura de la solución")
-Descripción:
-1. **Github**: El desarrollo colaborativo del presente proyecto se realizó a través de la plataforma Github, donde los participantes consultamos, creamos y actualizamos información relevante para la solución del mismo.
-2. **Cloud Build**: El repositorio colaborativo está conectado con la plataforma de GCP a través de un disparador (*trigger*) creado en Cloud Build con fines de desarrollo inicial.
-3. **Frontend**: Cloud Build realiza cambios directos en la configuración del frontend, mismo que está construido con las siguientes herramientas: **HTML, CSS, Javascript, Node.js y Bootstrap**
-4. **Cloud Endpoints**: La conexión para llegar a la instancia de la base de datos con la finalidad de consumir información se realiza mediante la herramienta de Cloud Endpoints, la cual controla el acceso a la información a través de URLs para cada microservicio.
-5. **API**: La programación de la API controla las solicitudes con el uso de métodos **POST, GET** y **PUT** para poder insertar, consultar y modificar información de la base de datos, respectivamente.
-6. **Backend**: Programado en el lenguaje MySQL, la base de datos almacena toda la información requerida en el proyecto. En conjunto con la API, ésta realiza inserciones, consultas y modificaciones según la actividad que la plataforma lo requiera.
-7. **API**: Una vez que la información haya sido consultada, modificada o insertada en la base de datos, la API recibe una confirmación o bien un código de error o éxito.
-8. **Cloud Endpoints**: Al terminar el consumo del microservicio dentro del URL, los cambios se ven reflejados en el frontend.
-9. **Docker**: La aplicación es entonces, capturada dentro de un contenedor Docker para su publicación.
-10. **Kubernetes**: Con la aplicación ya dentro de un contenedor, Kubernetes orquesta la aplicación así como sus diferentes y posibles versiones para su o sus publicaciones.
-11. **ITESM-Exchange**: Al finalizar el proceso descrito anteriormente y realizándose el número de veces que se requiera, la solución está disponible para ser consumida en tiempo real y en todo el mundo. 
+### 3.2 Solution Architecture
+![Alt text](docs/Arquitectura-De-Software.png?raw=true "Solution Architecture")
+Description:
+1. **Github**: The collaborative development of this project was carried out through the Github platform, where participants consult, create and update relevant information for its solution.
+2. **Cloud Build**: The collaborative repository is connected to the GCP platform through a trigger (* trigger *) created in Cloud Build for initial development purposes.
+3. **Frontend**: Cloud Build makes direct changes to the frontend configuration, which is built with the following tools: ** HTML, CSS, Javascript, Node.js and Bootstrap **
+4. **Cloud Endpoints**: The connection to reach the instance of the database in order to consume information is made using the Cloud Endpoints tool, which controls access to information through URLs for each microservice.
+5. **API**: The API programming controls the requests with the use of ** POST, GET ** and ** PUT ** methods to be able to insert, consult and modify information in the database, respectively.
+6. **Backend**: Programmed in the MySQL language, the database stores all the information required in the project. In conjunction with the API, it performs insertions, queries and modifications according to the activity that the platform requires.
+7. **API**: Once the information has been consulted, modified or inserted in the database, the API receives a confirmation or an error or success code.
+8. **Cloud Endpoints**: At the end of the consumption of the microservice within the URL, the changes are reflected in the frontend.
+9. **Docker**: The application is then captured inside a Docker container for publication.
+10. **Kubernetes**: With the application already inside a container, Kubernetes orchestrates the application as well as its different and possible versions for his or her publications.
+11. ** ITESM-Exchange **: By completing the process described above and completing the number of times required, the solution is available to be consumed in real time and throughout the world.
 
-### 3.2 Descripción de los componentes
+### 3.2 Components Description
 
-* **Github**: Para el desarrollo colaborativo del proyecto, Github nos permite trabajar individualmente y a distancia sin perder el trabajo en equipo. Fue seleccionado no sólo por ser la herramienta de desarrollo colaborativa más utilizada sino también por su facilidad para concetarse a Cloud Build, una de las herramientas dentro de Google Console Platform.
-* **Cloud Build**: Dentro del desarrollo inicial del proyecto, Cloud Build nos permitió conectarnos directamente al repositorio de Github, lo que optimizó el desarrollo y pruebas en el frontend.
-* **Frontend**: 
-    * HTML 5: Las vistas dentro de la plataforma ITESM-Exchange están programadas en el lenguaje común HTML. Ha sido elegido por su facilidad en pruebas de diseño, pues no requiere ninguna instalación ni servidor para funcionar, lo que facilita las pruebas y cambios locales.
-    * CSS: Al trabajar con vistas en el lenguaje HTML, los estilos CSS son imprescindibles. La calidad de las vistas aumenta así como la diversidad de formatos que pueda tener.
-    * Javascript: Utilizado en la conexión del frontend con el API para realizar cambios dentro de las vistas según la información dentro de la base de datos.
-    * Node.js: Uso de algunos módulos para el desarrollo del proyecto y su conexión a Cloud Endpoints. Ajax, Bootstrap y JQuery.
-    * Bootstrap: Facilita el desarrollo de las vistas proporcionando librerías. Particularmente utilizado para la creación de tablas con la información proporcionada desde la base de datos.
-    * Python: La velocidad de desarrollo de la API es considerablemente mayor a la que permite otros lenguajes. Rápida instalación de las librerías utilizadas en la solución como: SQLAlchemy, Flask, CORS, numpy y loggin.
-* **Cloud Endpoints**:  La herramienta nos permite acceder al API desarrollada sin importar el lenguaje en el que ésta esté y para qué plataforma sea dirigida. Su sistema de autenticación por medio de llaves y tokens brinda la seguridad que el proyecto necesita para no ser manipulada o corrompida por agentes externos al Tecnológico de Monterrey. 
-* **API**: todo desarrollado en el lenguaje de programación *Python*
-    * Flask: microframework utilizado por su interacción nativa con bases de datos, lo que agiliza la creación del API.
-    * SQLAlchemy: permite representar tablas y entidades de la base de datos a objetos en Python para facilitar la modificación, creación o inserción de información. 
-    * CORS: Cross Origin Resource Sharing, programa que permite llamar endpoints dentro del mismo servidor. Cuando se desarrolló, se contaba con un servidor local. Una vez en producción este programa deja de utilizarse porque para cada componente se tienen servidores diferentes.
-* **Backend**: La implementación de este servicio se desarrolló sobre la plataforma de GCP en una instancia de SQL Cloud con el lenguaje de programación *MySQL*. Su funcionamiento nativo dentro de la consola de Google, seguridad, administración y escalabilidad optimizaron el desarrollo y uso de la base de datos dentro de la solución.
-* **Docker**: Herramienta que facilita desplegar la aplicación mediante el uso de contenedores.
-* **Kubernetes**:  A diferencia de otras herramientas dentro de GCP -como App Engine- para desplegar aplicaciones, Kubernetes permite administrar la aplicación y sus servicios como si la infraestructura fuera propia. Políticas de escalabilidad, creación de servicios y versiones así como políticas de seguridad administradas por los desarrolladores y no por el proveedor de servicios en la nube, lo que lo vuelve mucho más flexible.
+* **Github**: For the collaborative development of the project, Github allows us to work individually and remotely without losing teamwork. It was selected not only for being the most widely used collaborative development tool, but also for its ease of joining Cloud Build, one of the tools within the Google Console Platform.
+* **Cloud Build**: Within the initial development of the project, Cloud Build allowed us to connect directly to the Github repository, which optimized development and testing in the frontend.
+* **Frontend**:
+    * HTML 5: The views within the ITESM-Exchange platform are programmed in the common HTML language. It has been chosen for its ease of design testing, since it does not require any installation or server to function, which facilitates testing and local changes.
+    * CSS: When working with views in the HTML language, CSS styles are essential. The quality of the views increases as well as the diversity of formats it may have.
+    * Javascript: Used in the connection of the frontend with the API to make changes within the views according to the information within the database.
+    * Node.js: Use of some modules for the development of the project and its connection to Cloud Endpoints. Ajax, Bootstrap and JQuery.
+    * Bootstrap: Facilitates the development of views by providing libraries. Particularly used for the creation of tables with the information provided from the database.
+    * Python: The API development speed is considerably higher than that allowed by other languages. Quick installation of the libraries used in the solution such as: SQLAlchemy, Flask, CORS, numpy and loggin.
+* **Cloud Endpoints**: The tool allows us to access the API developed regardless of the language it is in and for which platform it is directed. Its authentication system using keys and tokens provides the security that the project needs so as not to be manipulated or corrupted by external agents to the Tecnológico de Monterrey.
+* **API**: all developed in the *Python* programming language
+    * Flask: microframework used for its native interaction with databases, which speeds up the creation of the API.
+    * SQLAlchemy: it allows to represent tables and entities of the database to objects in Python to facilitate the modification, creation or insertion of information.
+    * CORS: Cross Origin Resource Sharing, a program that allows calling endpoints within the same server. When it was developed, it had a local server. Once in production, this program stops being used because for each component there are different servers.
+* **Backend**: The implementation of this service was developed on the GCP platform in an instance of SQL Cloud with the programming language *MySQL*. Its native operation within the Google console, security, administration and scalability optimized the development and use of the database within the solution.
+* **Docker**: Tool that facilitates deploying the application through the use of containers.
+* **Kubernetes**: Unlike other tools within GCP -such as App Engine- to deploy applications, Kubernetes allows you to manage the application and its services as if the infrastructure were your own. Scalability, service creation and version policies as well as security policies managed by developers and not by the cloud service provider, making it much more flexible.
 
 ### 3.3 Frontend
-El desarrollo del frontend está programado mediante el uso de un conjunto de herramientas web que tienen como resultado tres vistas: 
-* **Login**: página para uso exclusivo de inicio de sesión que redirecciona a alguna de las otras páginas según corresponda el usuario que inició sesión.
-* **Students**: dentro de esta vista los estudiantes podrán consultar las calificaciones de los cursos a los que están inscritos. 
-* **Teachers**: aquí, los profesores extranjeros pueden ver la lista de sus alumnos, insertar, cambiar o bien, borrar calificaciones de cada uno de ellos.
+The development of the frontend is programmed through the use of a set of web tools that result in three views:
+* **Login**: page for exclusive use of the login that redirects to any of the other pages as appropriate by the user who started the session.
+* **Students**: Within this view students will be able to see the grades of the courses they are enrolled in.
+* **Teachers**: Here, foreign teachers can see the list of their students, insert, change or delete grades for each of them.
 
-#### 3.3.1 Lenguajes de programación
-- **HTML 5**: Para la creación de la estructura general de las vistas.
-- **CSS**: Formatos y estilos dentro de las vistas.
-- **JavaScript**: Métodos de conexión; inserción, modificación y eliminación de datos en el frontend en conexión con la base de datos.
+#### 3.3.1 Programming Languages
+- **HTML 5**: Views creations.
+- **CSS**: Format and Styles.
+- **JavaScript**: Connection methods; insertion, modification and deletion of data in the frontend in connection with the database.
 
 #### 3.3.2 Framework
-- **Bootstrap**: Utilizado para la creación de tablas con la información proporcionada desde la base de datos.
+- **Bootstrap**: Used for creating tables with the information provided from the database.
 
-#### 3.3.3 Librerías de funciones o dependencias
+#### 3.3.3 Libraries and Dependencies
 - Node Modules:
     * "fortawesome/fontawesome-free": "5.10.2"
     * "bootstrap": "4.3.1"
@@ -140,34 +140,33 @@ El desarrollo del frontend está programado mediante el uso de un conjunto de he
     * "server": "^1.0.18"
     * "jquery.easing": "^1.4.1"
         
-#### 3.3.4 Referencias
+#### 3.3.4 References
 - [Portal skeleton](https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm)
 - [Bootstrap Tutorial](https://www.w3schools.com/bootstrap4/default.asp)
 
 ### 3.4 Backend
-El backend está compuesto por una sola instancia con una única base de datos llamada ***itesm-exchange*** la cual está alojada dentro de SQL Cloud de GCP. Es un modelo de base de datos relacional que contiene 5 tablas:
-1. **users**:  Los usuarios cuentan con su información personal, correo, contraseña así como relaciones con las siguientes tablas. 
-2. **user_type**: Tabla para hacer relacion con la información que debe tener un usuario dependiendo de sus permisos. Los posibles usuarios que pueden ingresar a la plataforma:
-    * Estudiantes
-    * Profesores
-    * Administrador
-3. **campus**: Almacena la información y descripción de los diferentes campus del Tecnológico de Monterrey.
-4. **courses**: Almacena los diferentes cursos y sus descripciones.
-5. **grades**: Asigna a cada estudiante una calificación por curso y profesor.
+The backend is made up of a single instance with a single database called *** itesm-exchange *** which is hosted within the GCP SQL Cloud. It is a relational database model that contains 5 tables:
+1. **users**: Users have their personal information, email, password as well as relationships with the following tables.
+2. **user_type**: Table to make relation with the information that a user must have depending on their permissions. Potential users who can enter the platform:
+     * Students
+     * Teachers
+     * Administrator
+3. **campus**: Stores the information and description of the different campus of the Tecnológico de Monterrey.
+4. **courses**: Stores the different courses and their descriptions.
+5. **grades**: Assign each student a grade per course and teacher.
 
-#### 3.4.1 Lenguaje de programación
+#### 3.4.1 Programming Language
 - SQL
 #### 3.4.2 Framework
 - MySQL 5.7
 
 ### 3.5 API
 
-
-#### 3.5.1 Lenguaje de programación
+#### 3.5.1 Programming Language
 * Python 3.7.5
 #### 3.5.2 Framework
 * Flask
-#### 3.5.3 Librerías de funciones o dependencias
+#### 3.5.3 Libraries and Dependencies
 * sqlalchemy
 * import os
 * import datetime
@@ -188,14 +187,14 @@ El backend está compuesto por una sola instancia con una única base de datos l
 * logging
 
 #### 3.5.4 Endpoints
-1. Crear Usuario
-    * **Descripción**: Método POST - Recibe una solicitud para crear un nuevo usuario y lo inserta en la base de datos.
-    * **URL**: **link de Google Endpoints**/api/users
+1. User Creation
+    * **Descripción**: POST - It receives a request to create a new user and inserts it into the database.
+    * **URL**: **Google Endpoints Link**/api/users
     * **Headers**:
         * Key: Content-Type
         * Value: application/json
         * Description: -
-    * **Formato JSON del cuerpo de la solicitud**: 
+    * **JSON request body**: 
     ```JSON
         { 
         "username": "username",
@@ -208,78 +207,78 @@ El backend está compuesto por una sola instancia con una única base de datos l
         "id_campus": "id_campus"
         }
     ```
-    * **Formato JSON de la respuesta**:
+    * **JSON answer**:
     ```JSON
         {
         "username": "username"
         }
     ```
-2. Obtener el nombre completo del usuario
-* **Descripción**: Método POST - recibe el id del usuario que inició sesión y devuelve el nombre del mismo. 
-* **URL**: **link de Google Endpoints**/api/users/name
+    2. Obtain user's full-name.
+* **Descripción**:  POST - it receives the id of the user who logged in and returns the name of the same. 
+* **URL**: **Google Endpoints Link**/api/users/name
 * **Headers**: 
     * Key: Content-Type
     * Value: application/json
     * Description: -
-* **Formato JSON del cuerpo de la solicitud**: 
+* **JSON request body**: 
 ```JSON
     {
     "username": "username"
     }
 ```
-* **Formato JSON de la respuesta**:
+* **JSON answer**:
 ```JSON
     {
     "name": "name"
     }
 ```
-3. Crear Campus
-* **Descripción**: Método POST - Crea un nuevo campus y lo inserta en la base de datos.
-* **URL**: **link de Google Endpoints**/api/campus
+3. Campus Creation
+* **Descripción**:  POST - it receives the id of the user who logged in and returns the name of the same.
+* **URL**: **Google Endpoints Link**/api/campus
 * **Headers**: 
     * Key: Content-Type
     * Value: application/json
     * Description: -
-* **Formato JSON del cuerpo de la solicitud**: 
+* **JSON request body**: 
 ```JSON
     {
     "campus_name": "campus_name"
     }
 ```
-* **Formato JSON de la respuesta**:
+* **JSON answer**:
 ```JSON
     {
     "id_campus": "id_campus",
     "campus_name": "campus_name"
     }
 ```
-4.  Búsqueda de Campus
-* **Descripción**: Método POST - recibe el id del campus y devuelve la descripción del mismo.
-* **URL**: **link de Google Endpoints**/api/campus/id
+4.  Campus Research
+* **Descripción**:  POST - receives the campus id and returns the description of the campus.
+* **URL**: **Google Endpoints Link**/api/campus/id
 * **Headers**: 
     * Key: Content-Type
     * Value: application/json
     * Description: -
-* **Formato JSON del cuerpo de la solicitud**: 
+* **JSON request body**: 
 ```JSON
     {
     "id_campus":"id_campus"
     }
 ```
-* **Formato JSON de la respuesta**:
+* **JSON answer**:
 ```JSON
     {
     "campus_name": "campus_name"
     }
 ```
-5. Imprime Campus
-* **Descripción**: Método GET - Devuelve todos los campus 
-* **URL**: **link de Google Endpoints**/api/campus
+5.  Campus Request
+* **Descripción**:  GET - Request from all campuses 
+* **URL**: **Google Endpoints Link**/api/campus
 * **Headers**: 
     * Key: Content-Type
     * Value: application/json
     * Description: -
-* **Formato JSON de la respuesta**:
+* **JSON answer**:
 ```JSON
     {
     "id_campus": "id_campus",
@@ -287,14 +286,14 @@ El backend está compuesto por una sola instancia con una única base de datos l
     "created": "created"
     }
 ```
-6. Inserta Calificación
-* **Descripción**: Método POST - Crea una nueva calificación relacionándolo con un alumno, materia y profesor.
-* **URL**: **link de Google Endpoints**/api/grade
+6. Grade Insert
+* **Descripción**:  POST - Create a new grade relating it to a student, subject and teacher.
+* **URL**: **Google Endpoints Link**/api/grade
 * **Headers**: 
     * Key: Content-Type
     * Value: application/json
     * Description: -
-* **Formato JSON del cuerpo de la solicitud**: 
+* **JSON request body**: 
 ```JSON
     {
     "id_course": "id_course",
@@ -304,7 +303,7 @@ El backend está compuesto por una sola instancia con una única base de datos l
     "created": "created"
     }
 ```
-* **Formato JSON de la respuesta**:
+* **JSON answer**:
 ```JSON
     {
     "id_course": "id_course",
@@ -312,20 +311,20 @@ El backend está compuesto por una sola instancia con una única base de datos l
     "professor": "professor"
     }
 ```
-7. Busqueda de calificación por estudiante
-* **Descripción**: Método POST - Devuelve las calificaciones del alumno seleccionado
-* **URL**: **link de Google Endpoints**/api/grade/student
+7. Grade Search Per Student
+* **Descripción**:  POST - Returns the grades of the selected student
+* **URL**: **Google Endpoints Link**/api/grade/student
 * **Headers**: 
     * Key: Content-Type
     * Value: application/json
     * Description: -
-* **Formato JSON del cuerpo de la solicitud**: 
+* **JSON request body**: 
 ```JSON
     {
     "student": "student"
     }
 ```
-* **Formato JSON de la respuesta**:
+* **JSON answer**:
 ```JSON
     {
     "id": "id",
@@ -336,20 +335,20 @@ El backend está compuesto por una sola instancia con una única base de datos l
     "created" "created"
     }
 ```
-8. Busqueda de calificación por profesor
-* **Descripción**: Método POST - Devuelve las calificaciones del profesor seleccionado
-* **URL**: **link de Google Endpoints**/api/grade/professor
+8. Qualification search by teacher
+* **Descripción**:  POST - Returns the grades of the selected teacher
+* **URL**: **Google Endpoints Link**/api/grade/professor
 * **Headers**: 
     * Key: Content-Type
     * Value: application/json
     * Description: -
-* **Formato JSON del cuerpo de la solicitud**: 
+* **JSON request body**: 
 ```JSON
     {
     "professor": "professor"
     }
 ```
-* **Formato JSON de la respuesta**:
+* **JSON answer**:
 ```JSON
 {
     "id": "id",
@@ -360,14 +359,14 @@ El backend está compuesto por una sola instancia con una única base de datos l
     "created" "created"
     }
 ```
-9. Insertar un curso
-* **Descripción**: Método POST - Ingresa una nueva materia
-* **URL**: **link de Google Endpoints**/api/course
+9. Course Insertion
+* **Descripción**: POST - Insert Courses
+* **URL**: **Google Endpoints Link**/api/course
 * **Headers**: 
     * Key: Content-Type
     * Value: application/json
     * Description: -
-* **Formato JSON del cuerpo de la solicitud**: 
+* **JSON request body**: 
 ```JSON
     {
     "course_description": "course_description",
@@ -375,7 +374,7 @@ El backend está compuesto por una sola instancia con una única base de datos l
     "last_day": "last_day"
     }
 ```
-* **Formato JSON de la respuesta**:
+* **JSON answer**:
 ```JSON
     {
     "id_course": "id_course",
@@ -385,14 +384,14 @@ El backend está compuesto por una sola instancia con una única base de datos l
     "created": "created"
     }
 ```
-10. Búsqueda de curso
-* **Descripción**: Método GET - Devuelve todos los cursos disponibles
-* **URL**: **link de Google Endpoints**/api/course
+10. Course Search
+* **Descripción**: GET - Returns all available courses
+* **URL**: **Google Endpoints Link**/api/course
 * **Headers**: 
     * Key: Content-Type
     * Value: application/json
     * Description: -
-* **Formato JSON de la respuesta**:
+* **JSON answer**:
 ```JSON
     {
     "id_course": "id_course",
@@ -402,14 +401,14 @@ El backend está compuesto por una sola instancia con una única base de datos l
     "created": "created"
     }
 ```
-11. Tipos de usuario
-* **Descripción**: Método GET - Devuelve todos los tipos de usuario
-* **URL**: **link de Google Endpoints**/api/user_type
+11. User Types
+* **Descripción**: GET - Returns all user types
+* **URL**: **Google Endpoints Link**/api/user_type
 * **Headers**: 
     * Key: Content-Type
     * Value: application/json
     * Description: -
-* **Formato JSON de la respuesta**:
+* **JSON answer**:
 ```JSON
     {
     "id_user_type": "id_user_type",
@@ -418,112 +417,112 @@ El backend está compuesto por una sola instancia con una única base de datos l
     }
 ```
 
-## 3.6 Pasos a seguir para utilizar el proyecto
-### Localmente
+## 3.6 Steps to use the project
+### Locally
 
-1. Clonar el repositorio de GitHub
+1. Clone the GitHub repository
 
-`git clone https://github.com/tec-csf/TC3059-PF-Otono-2019-itesm-exchange`
+`git clone https: // github.com / tec-csf / TC3059-PF-Otono-2019-itesm-exchange`
 
-2. Entrar en el directorio
+2. Enter the directory
 
-`cd TC3059-PF-Otono-2019-itesm-exchange/frontend`
+`cd TC3059-PF-Otono-2019-itesm-exchange / frontend`
 
-3. Instalar las dependencias de NodeJs para el frontend
+3. Install the NodeJs dependencies for the frontend
 
 `npm install`
 
-4. Iniciar el servidor local
+4. Start the local server
 
 `npm start`
 
-8. Entrar a la URL
+8. Enter the URL
 
-http://localhost:8080
+http: // localhost: 8080
 
-### Ejecución en GCP
+### GCP execution
 
-1. Entra a la consola de Google Cloud Platform (GCP) 
+1. Enter the Google Cloud Platform (GCP) console
 
 https://console.cloud.google.com
 
-2. Crea un proyecto en el cual se desplegará la aplicación
+2. Create a project in which the application will be deployed
 
-3. Abre la terminal de GCP
+3. Open the GCP terminal
 
-4. Clona el repositorio de Gitub
+4. Clone the Gitub repository
 
-`git clone https://github.com/tec-csf/TC3059-PF-Otono-2019-itesm-exchange.git`
+`git clone https: //github.com/tec-csf/TC3059-PF-Otono-2019-itesm-exchange.git`
 
-5. Entrar en el directorio
+5. Enter the directory
 
 `cd TC3059-PF-Otono-2019-itesm-exchange/frontend`
 
-6. Establece la variable de entorno PROJECT_ID en tu ID del proyecto de GCP. Esta variable se utilizará para asociar la imagen del contenedor con Container Registry. de tu proyecto.
+6. Set the environment variable PROJECT_ID to your GCP project ID. This variable will be used to associate the container image with the Container Registry of your project.
 
-`export PROJECT_ID=[PROJECT_ID]`
+`export PROJECT_ID = [PROJECT_ID]`
 
-7. A fin de compilar la imagen del contenedor de esta aplicación y etiquetarla para subirla, ejecuta el siguiente comando:
+7. In order to compile the container image of this application and tag it for upload, run the following command:
 
-`docker build -t gcr.io/${PROJECT_ID}/itesm-exchange:v1 .`
+`docker build -t gcr.io/$/itesm-exchange:v1.
 
-8. Este comando le indica a Docker que construya la imagen mediante el Dockerfile en el directorio actual y la etiqueta con un nombre, como gcr.io/my-project/hello-app:v1. El prefijo gcr.io hace referencia a Google Container Registry, donde se aloja la imagen. Ejecutar este comando no subirá la imagen todavía. Puedes ejecutar el comando docker images para verificar que la compilación fue exitosa:
+8. This command instructs Docker to build the image using the Dockerfile in the current directory and label it with a name, such as gcr.io/my-project/hello-app:v1. The gcr.io prefix refers to the Google Container Registry, where the image is hosted. Running this command will not upload the image yet. You can run the docker images command to verify that the compilation was successful:
 
 `docker images`
 
-9. Debes subir la imagen del contenedor en un registro para que GKE pueda descargarla y ejecutarla.
+9. You must upload the container image in a registry so that GKE can download and run it.
 
 `gcloud auth configure-docker`
 
-10. Ahora puedes usar la herramienta de línea de comandos de Docker para subir la imagen en tu Container Registry:
+10. Now you can use the Docker command line tool to upload the image in your Container Registry:
 
 `docker push gcr.io/${PROJECT_ID}/itesm-exchange:v1`
 
-11. Ejecuta tu contenedor de manera local (opcional)
+11. Run your container locally (optional)
 
-`docker run --rm -p 8080:8080 gcr.io/${PROJECT_ID}/itesm-exchange:v1`
+`docker run --rm -p 8080: 8080 gcr.io/${PROJECT_ID}/itesm-exchange:v1`
 
-12. Si estás en Cloud Shell, puedes hacer clic en el botón “Vista previa web” en la parte superior derecha para ver tu aplicación ejecutándose en una pestaña del navegador. De lo contrario, abre una ventana de la terminal nueva (o una pestaña de Cloud Shell) y ejecuta para verificar si el contenedor funciona:
+12. If you are in Cloud Shell, you can click the "Web Preview" button in the upper right to see your application running in a browser tab. Otherwise, open a new terminal window (or a Cloud Shell tab) and run to check if the container works:
 
-`http://localhost:8080`
+`http: //localhost:8080`
 
-13. Crea un clúster de contenedores
+13. Create a container cluster
 
 
-`gcloud config set project $PROJECT_ID`
+`gcloud config set project $ PROJECT_ID`
 `gcloud config set compute/zone us-central1-a`
 
-14. Ejecuta el siguiente comando para crear un clúster de dos nodos llamado **itesm-exchange**
+14. Run the following command to create a two-node cluster named **itesm-exchange**
 
-`gcloud container clusters create itesm-exchange --num-nodes=2`
+`gcloud container clusters create itesm-exchange --num-nodes = 2`
 
-15. La creación del clúster puede tardar varios minutos. Una vez que se completó el comando, ejecuta el siguiente comando y observa las dos instancias de VM de trabajador del clúster:
+15. The creation of the cluster can take several minutes. Once the command completes, run the following command and look at the two cluster worker VM instances:
 
 `gcloud compute instances list`
 
-16. Ejecuta el siguiente comando para recuperar sus credenciales y configurar la herramienta de línea de comandos de kubectl con ellas:
+16. Run the following command to retrieve your credentials and configure the kubectl command line tool with them:
 
 `gcloud container clusters get-credentials itesm-exchange`
 
-17. El siguiente comando kubectl create deployment kubectl hace que Kubernetes cree una implementación llamado hello-web en tu clúster. La implementación administra varias copias de tu aplicación llamadas réplicas y las programa para que se ejecuten en los nodos individuales de tu clúster. En este caso, la implementación ejecutará solo un pod de tu aplicación.
+17. The following kubectl create deployment kubectl command causes Kubernetes to create an implementation called hello-web in your cluster. The deployment manages multiple copies of your application called replicas and schedules them to run on individual nodes in your cluster. In this case, the deployment will run only one pod of your app.
 
-`kubectl create deployment itesm-web --image=gcr.io/${PROJECT_ID}/itesm-exchange:v1`
+`kubectl create deployment itesm-web --image = gcr.io/ $ {PROJECT_ID} /itesm-exchange: v1`
 
-18. Según la configuración predeterminada, los contenedores que ejecutas en GKE no son accesibles desde Internet, ya que no tienen direcciones IP externas. Debes exponer explícitamente tu aplicación al tráfico desde Internet, ejecuta el siguiente comando:
+18. By default, the containers you run in GKE are not accessible from the Internet, as they have no external IP addresses. You must explicitly expose your application to traffic from the Internet, run the following command:
 
-`kubectl expose deployment itesm-web --type=LoadBalancer --port 80 --target-port 8080`
+`kubectl expose deployment itesm-web --type = LoadBalancer --port 80 --target-port 8080`
 
-19. GKE asigna la dirección IP externa al recurso de servicio, no a la implementación. Si deseas averiguar la IP externa que GKE aprovisionó para tu aplicación, puedes inspeccionar el servicio con el comando kubectl get service:
+19. GKE assigns the external IP address to the service resource, not the implementation. If you want to find out the external IP that GKE provisioned for your application, you can inspect the service with the kubectl get service command:
 
 `kubectl get service`
 
-20. Copia la dirección IP pública y pégala en tu navegador.
+20. Copy the public IP address and paste it into your browser.
 
-21. **¡Estás listo para utilizar la plataforma ITESM-Exchange!**
+21. ** You are ready to use the ITESM-Exchange platform! **
 
 
-## 4. Referencias
-- [Implementa una aplicación web en contenedor](https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app?hl=es-419)
-- [Comenzar a usar Endpoints en Kubernetes](https://cloud.google.com/endpoints/docs/openapi/get-started-kubernetes?hl=es-419)
-- [Portal skeleton](https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm)
+## 4. References
+- [Container Implementation](https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app?hl=es-419)
+- [Kubernetes and Endpoints](https://cloud.google.com/endpoints/docs/openapi/get-started-kubernetes?hl=es-419)
+- [Portal ](https://www.w3schools.com/w3css/tryw3css_templates_portfolio.htm)
 - [Bootstrap Tutorial](https://www.w3schools.com/bootstrap4/default.asp)
