@@ -4,10 +4,6 @@
 
 ### 1.1 Technical Requirements
 
-The minimum technical requirements of the project are mentioned below, please keep them in mind so that it meets all of them.
-
-* The team is free to choose the development technologies to be used in the project, however, they must bear in mind that the final solution must be executed on one of the following cloud platforms:  [Google Cloud Platform](https://cloud.google.com/?hl=es), [Amazon Web Services](https://aws.amazon.com/) or [Microsoft Azure](https://azure.microsoft.com/es-mx/).
-* The project must use:
 * The solution must use a microservices architecture. If you are not familiar with this topic, we recommend reading [*Microservices*](https://martinfowler.com/articles/microservices.html) from [Martin Fowler](https://martinfowler.com).
 * The architecture must be modular, scalable, with redundancy and high availability.
 * The architecture should be clearly separated by layers (* frontend *, * backend *, * RESTful API *, data and storage).
